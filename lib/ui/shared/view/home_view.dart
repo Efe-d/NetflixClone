@@ -25,31 +25,106 @@ class _homeViewState extends State<homeView> {
             body: SafeArea(
               child: Column(
                 children: [
+                  TopBar(images: images, colors: colors),
+                  SizedBox(
+                    height: 0.1.sh,
+                  ),
                   Container(
-                      padding: EdgeInsets.all(20.r),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(width: 0.065.sh),
-                          Center(
-                            child: Image.asset(
-                              images.Logo,
-                              width: 0.4.sw,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.edit),
-                            color: Color(colors.colorwhite),
-                            iconSize: 0.04.sh,
-                          )
-                        ],
-                      ))
+                    //all profile need space around
+                    //tüm profillerin etraflarına bosluk gerekiyor
+                    padding: EdgeInsets.all(90.r),
+                    child: Column(
+                      children: [
+                        ProfileRow(images: images, colors: colors),
+                        ProfileRow(images: images, colors: colors)
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
           );
         });
+  }
+}
+
+class ProfileRow extends StatelessWidget {
+  const ProfileRow({
+    Key? key,
+    required this.images,
+    required this.colors,
+  }) : super(key: key);
+
+  final AppImages images;
+  final AppColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      Profile(images: images, colors: colors),
+      Profile(images: images, colors: colors),
+    ]);
+  }
+}
+
+class Profile extends StatelessWidget {
+  const Profile({
+    Key? key,
+    required this.images,
+    required this.colors,
+  }) : super(key: key);
+
+  final AppImages images;
+  final AppColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Image.asset(
+          images.ProfileImage,
+        ),
+        Text(
+          'Test1',
+          style: TextStyle(color: Color(colors.colorwhite)),
+        ),
+      ],
+    );
+  }
+}
+
+class TopBar extends StatelessWidget {
+  const TopBar({
+    Key? key,
+    required this.images,
+    required this.colors,
+  }) : super(key: key);
+
+  final AppImages images;
+  final AppColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: EdgeInsets.all(20.r),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(width: 0.065.sh),
+            Center(
+              child: Image.asset(
+                images.Logo,
+                width: 0.4.sw,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.edit),
+              color: Color(colors.colorwhite),
+              iconSize: 0.04.sh,
+            )
+          ],
+        ));
   }
 }

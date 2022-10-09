@@ -28,34 +28,47 @@ class _homeViewState extends State<homeView> {
               child: Column(
                 children: [
                   TopBar(images: images, colors: colors),
-                  Container(
-                    width: 1.sw,
-                    height: 0.8.sh,
-                    //padding: EdgeInsets.symmetric(vertical: 80.r),
-                    //all profile need space around
-                    //tüm profillerin etraflarına bosluk gerekiyor
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                            CupertinoPageRoute(
-                                builder: (ctx) => const first_view()));
-                      },
-                      child: Column(
-                        children: [
-                          ProfileRow(images: images, colors: colors),
-                          ProfileRow(images: images, colors: colors),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 0.5.sh,
-                  )
+                  Profiles(images: images, colors: colors),
+                  //Add profile i column içine 3. bir row açarak ekle
+                  AddProfile(images: images, colors: colors)
                 ],
               ),
             ),
           );
         });
+  }
+}
+
+class Profiles extends StatelessWidget {
+  const Profiles({
+    Key? key,
+    required this.images,
+    required this.colors,
+  }) : super(key: key);
+
+  final AppImages images;
+  final AppColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 1.sw,
+      height: 0.5.sh,
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).pushReplacement(
+              CupertinoPageRoute(builder: (ctx) => const first_view()));
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ProfileRow(images: images, colors: colors),
+            ProfileRow(images: images, colors: colors),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -71,10 +84,45 @@ class ProfileRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Profile(images: images, colors: colors),
-      Profile(images: images, colors: colors),
-    ]);
+    return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Profile(images: images, colors: colors),
+          Profile(images: images, colors: colors),
+        ]);
+  }
+}
+
+class AddProfile extends StatelessWidget {
+  const AddProfile({
+    Key? key,
+    required this.images,
+    required this.colors,
+  }) : super(key: key);
+
+  final AppImages images;
+  final AppColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(8.r),
+          child: Column(
+            children: [
+              Image.asset(images.ProfileAdd),
+              Text(
+                'Test1',
+                style: TextStyle(color: Color(colors.colorwhite)),
+              ),
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
 
@@ -90,17 +138,19 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset(
-          images.ProfileImage,
-        ),
-        Text(
-          'Test1',
-          style: TextStyle(color: Color(colors.colorwhite)),
-        ),
-      ],
-    );
+    return Padding(
+        padding: EdgeInsets.all(8.r),
+        child: Column(
+          children: [
+            Image.asset(
+              images.ProfileImage,
+            ),
+            Text(
+              'Test1',
+              style: TextStyle(color: Color(colors.colorwhite)),
+            ),
+          ],
+        ));
   }
 }
 

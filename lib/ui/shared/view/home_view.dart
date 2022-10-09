@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix/core/colors/color_palette.dart';
 import 'package:netflix/core/colors/images.dart';
+import 'package:netflix/ui/shared/view/first_view.dart';
 
 class homeView extends StatefulWidget {
   const homeView({super.key});
@@ -26,20 +28,29 @@ class _homeViewState extends State<homeView> {
               child: Column(
                 children: [
                   TopBar(images: images, colors: colors),
-                  SizedBox(
-                    height: 0.1.sh,
-                  ),
                   Container(
+                    width: 1.sw,
+                    height: 0.8.sh,
+                    //padding: EdgeInsets.symmetric(vertical: 80.r),
                     //all profile need space around
                     //tüm profillerin etraflarına bosluk gerekiyor
-                    padding: EdgeInsets.all(90.r),
-                    child: Column(
-                      children: [
-                        ProfileRow(images: images, colors: colors),
-                        ProfileRow(images: images, colors: colors)
-                      ],
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(
+                            CupertinoPageRoute(
+                                builder: (ctx) => const first_view()));
+                      },
+                      child: Column(
+                        children: [
+                          ProfileRow(images: images, colors: colors),
+                          ProfileRow(images: images, colors: colors),
+                        ],
+                      ),
                     ),
                   ),
+                  SizedBox(
+                    height: 0.5.sh,
+                  )
                 ],
               ),
             ),

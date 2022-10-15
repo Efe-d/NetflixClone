@@ -8,6 +8,7 @@ import 'package:netflix/core/colors/images.dart';
 
 class first_view extends StatelessWidget {
   const first_view({super.key});
+
   static final colors = AppColors();
   static final images = AppImages();
 
@@ -38,26 +39,109 @@ class first_view extends StatelessWidget {
               child: ListView(
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       C1(images: images, colors: colors),
                       C2(colors: colors),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Previews',
-                              style: TextStyle(
-                                  color: Color(colors.colorwhite),
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.bold)),
-                        ],
-                      )
+                      Title(colors: colors, title: 'Previews'),
+                      filmlist(images: images, sendimage: images.filmimage),
+                      Title(title: 'Popular on Netflix', colors: colors),
+                      filmlist2(sendimage: images.f2, images: images)
                     ],
                   )
                 ],
               ),
             ));
       },
+    );
+  }
+}
+
+class filmlist extends StatelessWidget {
+  final sendimage;
+  const filmlist({
+    Key? key,
+    required this.sendimage,
+    required this.images,
+  }) : super(key: key);
+
+  final AppImages images;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: 0.r,
+      ),
+      height: 0.18.sh,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+        ],
+      ),
+    );
+  }
+}
+
+class filmlist2 extends StatelessWidget {
+  final sendimage;
+  const filmlist2({
+    Key? key,
+    required this.sendimage,
+    required this.images,
+  }) : super(key: key);
+
+  final AppImages images;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: 0.r,
+      ),
+      height: 0.3.sh,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+          Image.asset(sendimage),
+        ],
+      ),
+    );
+  }
+}
+
+class Title extends StatelessWidget {
+  final title;
+  const Title({
+    Key? key,
+    required this.title,
+    required this.colors,
+  }) : super(key: key);
+
+  final AppColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.02.sw, horizontal: 0.03.sw),
+      child: Text(title,
+          style: TextStyle(
+            color: Color(colors.colorwhite),
+            fontSize: 30.r,
+            fontWeight: FontWeight.bold,
+          )),
     );
   }
 }
@@ -121,8 +205,6 @@ class C2 extends StatelessWidget {
 }
 
 class ButtonColumn extends StatelessWidget {
-  final icon;
-  final String text;
   const ButtonColumn({
     Key? key,
     required this.colors,
@@ -131,6 +213,8 @@ class ButtonColumn extends StatelessWidget {
   }) : super(key: key);
 
   final AppColors colors;
+  final icon;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +234,6 @@ class ButtonColumn extends StatelessWidget {
 }
 
 class ButtonText extends StatelessWidget {
-  final String text;
   const ButtonText({
     Key? key,
     required this.colors,
@@ -158,6 +241,7 @@ class ButtonText extends StatelessWidget {
   }) : super(key: key);
 
   final AppColors colors;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -170,7 +254,6 @@ class ButtonText extends StatelessWidget {
 }
 
 class IconButtons extends StatelessWidget {
-  final icon;
   const IconButtons({
     Key? key,
     required this.icon,
@@ -178,6 +261,7 @@ class IconButtons extends StatelessWidget {
   }) : super(key: key);
 
   final AppColors colors;
+  final icon;
 
   @override
   Widget build(BuildContext context) {
@@ -199,8 +283,8 @@ class C1 extends StatelessWidget {
     required this.colors,
   }) : super(key: key);
 
-  final AppImages images;
   final AppColors colors;
+  final AppImages images;
 
   @override
   Widget build(BuildContext context) {
@@ -243,11 +327,12 @@ class C1 extends StatelessWidget {
 }
 
 class TopBarButtons extends StatelessWidget {
-  final String text;
   const TopBarButtons({
     Key? key,
     this.text = '',
   }) : super(key: key);
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -261,11 +346,12 @@ class TopBarButtons extends StatelessWidget {
 }
 
 class CustomText extends StatelessWidget {
-  final String text;
   const CustomText({
     Key? key,
     required this.text,
   }) : super(key: key);
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {

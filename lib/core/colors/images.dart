@@ -7,4 +7,5 @@ class AppImages {
   final ProfileAdd = 'lib/assets/images/Add.png';
   final topfilm = 'lib/assets/images/topfilm.png';
   final filmimage = 'lib/assets/images/filmimg.png';
+  final f2 = 'lib/assets/images/karefilm.png';
 }

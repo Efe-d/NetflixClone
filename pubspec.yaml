@@ -68,6 +68,7 @@ flutter:
     - lib/assets/images/Add.png
     - lib/assets/images/filmimg.png
     - lib/assets/images/topfilm.png
+    - lib/assets/images/karefilm.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
